@@ -181,6 +181,19 @@ def _cmd_sync_free_models(args) -> int:
     return 0
 
 
+def _cmd_bai(args) -> int:
+    """bai 链路管理（start-bai / bai-usage）。仅当本地存在 bai_link 模块时可用。"""
+    from .bai_link import main as bai_main
+    bai_argv = []
+    if args.bai_once:
+        bai_argv.append("--once")
+    if args.bai_install:
+        bai_argv.append("--install")
+    if args.bai_usage:
+        bai_argv.append("--usage")
+    return bai_main(bai_argv)
+
+
 def _cmd_dashboard(args) -> int:
     from .dashboard import run
     return run(port=args.port)
@@ -230,6 +243,19 @@ def main(argv: Optional[list[str]] = None) -> int:
     p_hc.add_argument("--tools-mode")
     p_hc.add_argument("--probe", help="冒烟任务文本（默认：只回复两个字：正常）")
     p_hc.set_defaults(func=_cmd_healthcheck)
+
+    # ── 本地私有命令：bai 链路管理（仅当 bai_link 模块存在时注册）──
+    try:
+        from . import bai_link  # noqa: F401
+        p_bai = sub.add_parser("start-bai", help="bai(api.b.ai) 链路自检/自愈/保活（仅本地可用）")
+        p_bai.add_argument("--once", action="store_true", help="只自检拉起，不起保活")
+        p_bai.add_argument("--install", action="store_true", help="生成 launchd 开机自启")
+        p_bai.add_argument("--usage", dest="bai_usage", action="store_true", help="打印用量统计")
+        p_bai.add_argument("--bai-once", dest="bai_once", action="store_true", help=argparse.SUPPRESS)
+        p_bai.add_argument("--bai-install", dest="bai_install", action="store_true", help=argparse.SUPPRESS)
+        p_bai.set_defaults(func=_cmd_bai, bai_once=False, bai_install=False, bai_usage=False)
+    except ImportError:
+        pass  # 公开版无 bai_link：start-bai 不出现
 
     args = parser.parse_args(argv)
     try:

@@ -26,3 +26,6 @@ venv/
 .vscode/
 .idea/
 .DS_Store
+
+# 本地私有：bai 隧道管理模块（不进公开仓库）
+src/router_brain/bai_link.py
