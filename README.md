@@ -110,19 +110,56 @@ cp -r agent-presets/router-brain ~/.dsh/.agent-presets/
 
 ---
 
-## 核心能力
+## 核心亮点
 
-| 能力 | 说明 |
+### 🧠 决策 / 执行分离 —— 对抗注意力涣散
+
+大脑只看「目标 + 当前局面 + 该派谁」，不接触执行细节，注意力始终集中在判断上；
+工人每个子任务上下文短小，只盯眼前一件事，不会因为要"记得全盘"而迷失。
+
+### 🔁 派活-反馈-重派闭环 —— 对抗幻觉
+
+大脑派活 → 工人干完 → 结果回传 → 大脑检查达标 → 不达标重派/换模型。
+关键结论强制**多模型交叉验证**（不同厂商独立计算，一致才采信）——一个人会骗你，多个模型互相兜底不容易骗到底。
+
+### 💰 便宜优先 + 一键免费模型同步
+
+- 默认选 `cost=free/low` 的可用模型；简单问答走 direct 秒回，不启动 agent；
+- `router-brain sync-free-models`：一键从 OpenRouter 拉取**最新免费模型**写入池子，派活实时可用，自动跳过已存在。
+
+### 🛡️ 生产级容错
+
+| 机制 | 说明 |
 |---|---|
-| 决策/执行分离 | 大脑只判断，工人专注干活 → 缓解注意力涣散 |
-| 派活-反馈闭环 | 结果回传、不达标重派/换模型 → 对抗幻觉 |
-| 无硬分工 | 不写死"任务类型→模型"，分工由大脑判断 |
-| 多通道 failover | 一个模型挂多通道，主通道限流自动切备 |
-| 重试+降级+熔断 | 429/超时/5xx 重试；失败换模型；连续失败熔断冷却 |
-| 便宜优先 | 默认选 cost=free/low 的可用模型 |
-| direct 快问快答 | 问答/分类/提取秒回，不启动 agent |
-| worker 通道开关 | 通道可标记 `worker:false`（只作大脑、不派工人） |
-| 实时派活面板 | 网页看大脑每步派活/工人进度/耗时 |
+| 多通道 failover | 一个模型挂多通道，主通道限流/停服自动切备通道 |
+| 重试 + 降级 + 熔断 | 429/超时/5xx 重试；失败沿候选链换模型；连续失败熔断冷却 |
+| 永久性错误熔断 | 模型停服/不存在（deprecated/not found）→ 立即熔断，不浪费配额 |
+| 实时生效 | 改 `pool.yaml`/`routing.yaml` 即刻生效，无需重启 |
+
+### 🧭 智能调度细节
+
+- **无硬分工**：不写死"任务类型→模型"，分工由大脑运行时判断；
+- **中英关键词分类器**：任务自动分类（code/debug/math/plan/complex/writing/creative/vision/qa…），快问快答直走 API；
+- **vision 图片支持**：`--images` 传逗号分隔的图片路径/URL，自动派给视觉模型；
+- **worker 通道开关**：通道可标记 `worker:false`（只作大脑、不派工人）；
+- **配置模板化**：`pool.yaml` 是空模板，用户自己填模型和 key，框架不绑定任何具体厂商。
+
+### 🖥️ 可视化 & 可观测
+
+| 命令 | 作用 |
+|---|---|
+| `router-brain route "任务"` | 只看路由决策（不执行） |
+| `router-brain run "任务"` | 路由→派活→降级→汇总 全流程 |
+| `router-brain list-models --json` | 模型池 JSON（大脑决策依据） |
+| `router-brain healthcheck` | 全量冒烟：逐个 ping 模型池，确认哪些可用 |
+| `router-brain sync-free-models` | 同步最新免费模型 |
+| `router-brain dashboard` | 实时派活面板（网页 http://127.0.0.1:8090 看大脑每步派活/工人进度/耗时） |
+
+### 🔒 安全设计
+
+- **从不打印 key**：direct 模式按需取一次，agent 模式连 key 都不碰；
+- 工人子进程工作目录 = `--cwd`，文件权限遵循 DSH 沙箱策略；
+- 密钥永不出现在日志与输出中。
 
 ---
 
@@ -166,12 +203,19 @@ router-brain/
 ├── config/
 │   ├── pool.yaml             你的模型池（模板见文件内注释）
 │   └── routing.yaml          路由规则 + 执行参数
+├── agent-presets/
+│   └── router-brain/         DSH 预设（复制到 ~/.dsh/.agent-presets/ 即用）
+│       ├── agent.cordis.yml  指挥官 persona + 工具集
+│       ├── preset.yml        预设元信息
+│       └── skills/           派活 skill（SKILL.md）
 ├── src/router_brain/
 │   ├── config.py             配置加载 + 模型池/通道/降级管理
 │   ├── router.py             选模型
 │   ├── degrade.py            重试 + 降级 + 熔断
 │   ├── executor.py           agent/direct 执行
 │   ├── llm_api.py            direct 模式客户端（错误分类）
+│   ├── openrouter_sync.py    免费模型自动同步
+│   ├── dashboard.py          实时派活面板
 │   └── cli.py                CLI 入口
 ├── tests/                    单元测试（全离线）
 ├── LICENSE                   MIT
