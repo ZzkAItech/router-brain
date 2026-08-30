@@ -131,6 +131,26 @@
 
 ---
 
+## 实际输出长什么样
+
+**路由决策**（`router-brain route "写个python脚本"`，只决策不执行）：
+
+```json
+{
+  "task_type": "code",
+  "selected_model": "fast-cheap-model",
+  "provider": "my_primary",
+  "execution": "agent",
+  "reason": "派给 DSH headless agent 执行；默认最便宜可用模型（大脑可用 --force-model 覆盖）"
+}
+```
+
+**完整派活**（`router-brain run "任务"`）：路由 JSON → `由 <模型> 完成` → 工人结果 → `📋 工人工作过程` 区块（工人实际写了什么文件、跑了什么命令）→ 大脑读进汇报。
+
+> 以上用通用示例池跑出（`examples/pool.example.yaml`），你配置真实模型后输出结构一致。
+
+---
+
 ## 快速开始
 
 ### 1. 安装
