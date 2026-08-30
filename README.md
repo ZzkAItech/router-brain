@@ -13,7 +13,7 @@
 <a href="https://github.com/ZzkAItech/router-brain"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ZzkAItech/router-brain?style=flat-square&label=Forks"></a>
 <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square"></a>
 <a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/python-3.10+-blue?style=flat-square"></a>
-<a href="#"><img alt="tests" src="https://img.shields.io/badge/tests-45%20passed-green?style=flat-square"></a>
+<a href="https://github.com/ZzkAItech/router-brain/actions"><img alt="tests" src="https://github.com/ZzkAItech/router-brain/actions/workflows/test.yml/badge.svg"></a>
 </p>
 
 ---
