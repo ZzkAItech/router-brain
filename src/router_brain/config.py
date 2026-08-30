@@ -99,9 +99,7 @@ class Config:
                 quota=dict(spec.get("quota") or {}),
                 note=spec.get("note", ""),
             )
-        # 校验 classifier 关键词引用的任务类型（若有）
-        for task_type in self.keywords:
-            pass
+        # （原 keyword 校验空循环已移除——无实际作用）
 
     # ---- 访问器 -----------------------------------------------------
     @property
