@@ -1,6 +1,6 @@
 # ============================================================
-# 模型池定义 — 框架模板
-# 你需要在此文件里添加你自己的模型和通道，才能使用 router-brain 的路由派活功能。
+# 模型池定义 — 你需要在这里添加你自己的模型和通道
+# 以下是一个示例，取消注释 + 填入你的凭据即可使用
 # ============================================================
 #
 # 字段说明：
@@ -12,22 +12,22 @@
 #
 # 使用方式：
 # 1. 在 providers 里添加你的 API 通道
-# 2. 在 models 里添加你能用的模型，指定其 providers 通道
-# 3. 凭据存放在 ~/.dsh/.credentials.yaml 或同名环境变量，框架自动读取
-# 4. 改完配置文件即刻生效，无需重启
+# 2. 在 models 里添加你能用的模型
+# 3. 凭据存放在 ~/.dsh/.credentials.yaml 或同名环境变量
+# 4. 改完即刻生效，无需重启
 
 providers:
-  # 示例通道（请替换为你自己的）：
+  # 示例通道（取消注释，填入你的配置）：
   # my_channel:
   #   base_url: https://api.example.com/v1
   #   credential_key: MY_API_KEY
-  #   note: 我的 API 通道
+  #   note: 你的 API 通道
 
 models:
-  # 示例模型（请替换为你自己的）：
+  # 示例模型（取消注释，填入你的模型）：
   # my-model:
   #   kind: general
-  #   cost: low
+  #   cost: free
   #   context: 131072
   #   providers:
   #     - {channel: my_channel, dsh_provider: my_channel}

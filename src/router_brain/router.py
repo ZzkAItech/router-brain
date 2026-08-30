@@ -22,7 +22,10 @@ class Router:
             # vision 无专用模型时回退到普通
             default = self._cfg.cheapest_available()
         if default is None:
-            raise RouterError("模型池里没有可用模型（全部禁用或池为空）")
+            raise RouterError(
+                "模型池里没有可用模型（全部禁用或池为空）——请先在 config/pool.yaml 配置你的模型和通道，"
+                "详见 README「配置你的模型池」。"
+            )
         # 实际可用通道（尊重 force_channel）；空则用 primary
         usable = self._cfg.usable_channels(default)
         if not usable:

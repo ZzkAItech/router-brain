@@ -3,6 +3,14 @@
 > 把「决策」和「执行」分开：**大脑只做决策、不被细节干扰；工人专注干活、上下文短小**。
 > 用对的钱、对的模型，把复杂任务拆开做完，还能互相验证、对抗幻觉。
 
+<p align="center">
+<a href="https://github.com/ZzkAItech/router-brain"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ZzkAItech/router-brain?style=flat-square&label=Stars"></a>
+<a href="https://github.com/ZzkAItech/router-brain"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ZzkAItech/router-brain?style=flat-square&label=Forks"></a>
+<a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square"></a>
+<a href="https://www.python.org/"><img alt="Python" src="https://img.shields.io/badge/python-3.10+-blue?style=flat-square"></a>
+<a href="#"><img alt="tests" src="https://img.shields.io/badge/tests-45%20passed-green?style=flat-square"></a>
+</p>
+
 ---
 
 ## 它解决什么痛点
@@ -130,12 +138,30 @@ router-brain **不内置任何模型/通道**——它只是一个调度框架�
 凭据放 `~/.dsh/.credentials.yaml` 或同名环境变量，框架自动读取，**从不打印 key**。
 改完配置文件**即刻生效**，无需重启。
 
+> ⚠️ **首次使用必看**：不配置模型池，`router-brain` 会提示「模型池里没有可用模型」。
+> 这是正常的——先填 `config/pool.yaml` 再跑。一个最简配置（一个通道 + 一个模型）就够起步：
+>
+> ```yaml
+> providers:
+>   my_channel:
+>     base_url: https://api.example.com/v1
+>     credential_key: MY_API_KEY
+>
+> models:
+>   my-model:
+>     kind: general
+>     cost: free
+>     context: 131072
+>     providers:
+>       - {channel: my_channel, dsh_provider: my_channel}
+> ```
+
 ### 3. 跑起来
 
 ```bash
-router-brain run "把 /tmp 下的数据整理成一份报告"   # 路由→派活→降级→汇总
-router-brain list-models                            # 看你的模型池
+router-brain list-models                            # 先看你的模型池（确认配置生效）
 router-brain route "写个 Python 脚本"               # 只看路由决策（不执行）
+router-brain run "把 /tmp 下的数据整理成一份报告"   # 路由→派活→降级→汇总
 ```
 
 ### 4.（可选）在 DeepSeek Harness 里启用「路由大脑」模式
