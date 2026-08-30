@@ -1,7 +1,5 @@
 # router-brain · LLM Routing Brain
 
-> **English** (below) · **中文**（下方）— 同一文件双语版
-
 > **Decisions and execution, separated.** A lightweight "brain" model handles the thinking—decomposing your goal, choosing a model, dispatching workers, and reading their feedback. Each worker gets one focused, short-context subtask. Use the right model for the job, cross-validate important results, and keep costs down.
 
 > **AI orchestration · multi-model routing · prompt automation · DeepSeek Harness** — You don't need to be a prompt engineer. Tell it *what* you want; the brain breaks the task down, writes the prompts, picks the model, sets the reasoning effort, dispatches workers, checks their output, and iterates until it's done.
@@ -211,10 +209,6 @@ router-brain/
 - Keys never appear in logs or output.
 
 ---
-
----
-
-# 中文版（简体）
 
 # router-brain · 模型路由大脑
 
