@@ -3,6 +3,9 @@
 > 把「决策」和「执行」分开：**大脑只做决策、不被细节干扰；工人专注干活、上下文短小**。
 > 用对的钱、对的模型，把复杂任务拆开做完，还能互相验证、对抗幻觉。
 
+> **AI 编排框架 · 多模型路由 · 提示词自动化 · DeepSeek Harness** —— 不会写提示词也能用好 AI：
+> 你只管说"要什么"，大脑自动拆解任务、写子任务提示词、选模型、定推理强度、派活、看反馈、迭代到完成。
+
 <p align="center">
 <a href="https://github.com/ZzkAItech/router-brain"><img alt="GitHub stars" src="https://img.shields.io/github/stars/ZzkAItech/router-brain?style=flat-square&label=Stars"></a>
 <a href="https://github.com/ZzkAItech/router-brain"><img alt="GitHub forks" src="https://img.shields.io/github/forks/ZzkAItech/router-brain?style=flat-square&label=Forks"></a>
