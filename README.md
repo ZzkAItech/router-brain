@@ -155,6 +155,30 @@ cp -r agent-presets/router-brain ~/.dsh/.agent-presets/
 | `router-brain sync-free-models` | 同步最新免费模型 |
 | `router-brain dashboard` | 实时派活面板（网页 http://127.0.0.1:8090 看大脑每步派活/工人进度/耗时） |
 
+### 👷 工人 = 完整 agent，过程全透明
+
+- **工人 = 完整标准工具集**：派出去的 worker 注入 `worker-standard.yml`（bash/fs/jobs/goal/todo/skill/web 等），不是精简 bundle——工人具备与 GUI 同等的完整能力来干活。
+- **工人过程全透明**：每次派活后，工人的实际步骤轨迹（写了什么文件、跑了什么命令、中间输出）会被提取出来，附在结果里（`📋 工人工作过程` 区块），大脑读进汇报，用户也能看到工人每一步干了什么。
+- **跨轮长任务持续**：复杂任务用 `goal` 工具创建目标，跨轮持续推进，绝不中途放弃；`--cwd` 指定工作目录，工人不会跑错位置。
+
+### 🌐 网络受限地区也能用
+
+框架内置**通用隧道支持**：在 `pool.yaml` 的 provider 配置里设 `tunnel_host` / `tunnel_port`，direct 客户端连到隧道地址，但 TLS SNI 和 Host 头仍用目标主机——网络受限地区（如国内访问海外 API）也能用。
+
+### 🔧 丰富的派活参数
+
+`router-brain run` 支持：
+
+| 参数 | 作用 |
+|---|---|
+| `--force-model <模型>` | 大脑绕过路由，强制指定模型 |
+| `--cwd <目录>` | 工人工作目录 |
+| `--images <图片路径>` | 逗号分隔的图片路径/URL（vision 任务） |
+| `--timeout <秒数>` | 工人超时 |
+| `--tools-mode <模式>` | headless 工具模式（native/code/both） |
+| `--auto-failover` | 失败时由引擎自动换模型（默认停下让大脑决定） |
+| `--hints <提示>` | 给路由的额外提示 |
+
 ### 🔒 安全设计
 
 - **从不打印 key**：direct 模式按需取一次，agent 模式连 key 都不碰；
