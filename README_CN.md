@@ -348,11 +348,11 @@ router-brain/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/        Bug 报告 / 功能建议
 │   └── PULL_REQUEST_TEMPLATE.md  PR 模板
-├── README_EN.md               English README
+├── README_CN.md              中文 README
 ├── CONTRIBUTING.md           贡献指南
 ├── CHANGELOG.md              更新日志
 ├── LICENSE                   MIT
-└── README.md                 本文件
+└── README.md                 英文 README（主页默认显示）
 ```
 
 ## 安全
