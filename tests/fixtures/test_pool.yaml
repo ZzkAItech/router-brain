@@ -1,0 +1,75 @@
+# 测试用模型池 fixture — 通用示例，不包含任何真实项目信息
+providers:
+  test-channel-a:
+    base_url: https://api.example-a.com/v1
+    credential_key: TEST_A_KEY
+    note: 测试通道 A
+  test-channel-b:
+    base_url: https://api.example-b.com/v1
+    credential_key: TEST_B_KEY
+    note: 测试通道 B
+  test-channel-c:
+    base_url: https://api.example-c.com/v1
+    credential_key: TEST_C_KEY
+    worker: false
+    note: 测试通道 C（仅大脑）
+
+models:
+  test-model-free:
+    kind: general
+    cost: free
+    context: 131072
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+  test-model-low:
+    kind: general
+    cost: low
+    context: 131072
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+  test-model-banned:
+    kind: general
+    cost: medium
+    banned: true
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+  test-model-unreliable:
+    kind: general
+    cost: low
+    context: 131072
+    unreliable: true
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+  test-model-dual-channel:
+    kind: general
+    cost: low
+    context: 131072
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+      - {channel: test-channel-b, dsh_provider: test-b}
+  test-model-dual-with-c:
+    kind: general
+    cost: medium
+    context: 131072
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}
+      - {channel: test-channel-c, dsh_provider: test-c}
+  test-model-vision:
+    kind: vision
+    cost: low
+    context: 131072
+    providers:
+      - {channel: test-channel-b, dsh_provider: test-b}
+  test-model-high:
+    kind: general
+    cost: high
+    context: 131072
+    providers:
+      - {channel: test-channel-b, dsh_provider: test-b}
+  test-model-quota-limited:
+    kind: general
+    cost: low
+    context: 131072
+    quota: {h5: 100}
+    providers:
+      - {channel: test-channel-a, dsh_provider: test-a}

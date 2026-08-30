@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# 虚拟环境
+.venv/
+venv/
+
+# 运行时产物（每次 router-brain run 生成，含 per-run settings/patch/日志）
+.run/
+
+# 测试缓存
+.pytest_cache/
+
+# 本地凭证/环境（绝不能进仓库）
+*.key
+*.pem
+.credentials*
+.env
+.env.local
+
+# 编辑器/系统
+.vscode/
+.idea/
+.DS_Store
