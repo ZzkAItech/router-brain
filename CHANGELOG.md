@@ -2,6 +2,15 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 的语义版本化约定。
 
+## [1.1.4] — 2026-09-01
+
+### 文档
+- README 精简为 PyPI 友好版（504行→264行，英文为主+中文快速上手）。
+
+### 工程
+- 分类关键词表（classifier 段）补全英文词（只增不删）：zh、creative、vision、writing 类别扩充地道英文关键词（每个 10–18 个），清除无意义堆砌词（semantic/semantics 等废话）。
+- 清理残留文件：`temp_edit8.py`、`config/routing.yaml.backup` 已删除。
+
 ## [1.1.1] — 2026-08-31
 
 ### 修复

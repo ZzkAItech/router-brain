@@ -90,6 +90,21 @@ class TestClassifier(unittest.TestCase):
     def test_en_creative(self):
         self.assertEqual(self.clf.classify("brainstorm some creative names"), "creative")
 
+    def test_en_zh(self):
+        self.assertEqual(self.clf.classify("express Chinese cultural expression"), "zh")
+
+    def test_en_writing_new(self):
+        self.assertEqual(self.clf.classify("write a professional article about literature"), "writing")
+
+    def test_en_vision_new(self):
+        self.assertEqual(self.clf.classify("analyze image content with computer vision techniques"), "vision")
+
+    def test_en_classify_new(self):
+        self.assertEqual(self.clf.classify("classify these items into categories using AI"), "classify")
+
+    def test_en_extract_new(self):
+        self.assertEqual(self.clf.classify("extract key entities from this text"), "extract")
+
     def test_empty_task_raises_valueerror(self):
         # #9: 空任务应抛出 ValueError
         with self.assertRaises(ValueError):
