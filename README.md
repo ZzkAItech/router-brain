@@ -2,7 +2,7 @@
 
 > **English**: this file · **中文**: [README_CN.md](README_CN.md)
 
-> **Separate decision from execution**: a small "brain" model makes decisions (decompose → pick model → dispatch → read feedback); focused workers do one short-context subtask each. Use the right model for the right job, verify across models, fight hallucinations, and save money.
+> **Separate decision from execution**: the brain focuses on decisions without being distracted by execution details; workers handle one focused subtask each. Decompose → pick model → dispatch → read feedback → iterate. Cross-validate across models to fight hallucinations; cheap-first to save money.
 
 > **AI orchestration framework · multi-model router · prompt automation · DeepSeek Harness** — You don't need to know how to write prompts: tell it *what* you want, and the brain decomposes the task, writes the subtask prompts, picks the model, sets the reasoning effort, dispatches workers, reads feedback, and iterates until done.
 
