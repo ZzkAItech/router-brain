@@ -323,6 +323,8 @@ router-brain/
 │   ├── llm_api.py            direct 模式客户端（错误分类）
 │   └── cli.py                CLI 入口
 ├── tests/                    单元测试（全离线）
+├── CONTRIBUTING.md           贡献指南
+├── CHANGELOG.md              更新日志
 ├── LICENSE                   MIT
 └── README.md                 本文件
 ```
