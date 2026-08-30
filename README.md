@@ -1,5 +1,7 @@
 # router-brain · 模型路由大脑
 
+> **English**：[README_EN.md](README_EN.md) · **中文**：本文件
+
 > 把「决策」和「执行」分开：**大脑只做决策、不被细节干扰；工人专注干活、上下文短小**。
 > 用对的钱、对的模型，把复杂任务拆开做完，还能互相验证、对抗幻觉。
 
@@ -323,6 +325,10 @@ router-brain/
 │   ├── llm_api.py            direct 模式客户端（错误分类）
 │   └── cli.py                CLI 入口
 ├── tests/                    单元测试（全离线）
+├── .github/
+│   ├── ISSUE_TEMPLATE/        Bug 报告 / 功能建议
+│   └── PULL_REQUEST_TEMPLATE.md  PR 模板
+├── README_EN.md               English README
 ├── CONTRIBUTING.md           贡献指南
 ├── CHANGELOG.md              更新日志
 ├── LICENSE                   MIT
