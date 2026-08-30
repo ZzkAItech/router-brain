@@ -4,7 +4,7 @@
 执行面（DeepSeek Harness headless agent）负责真正动手干活。
 """
 
-__version__ = "1.1.2"
+__version__ = "1.1.3"
 
 # 导出核心类
 from .config import Config

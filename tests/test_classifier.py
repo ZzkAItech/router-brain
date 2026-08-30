@@ -47,6 +47,49 @@ class TestClassifier(unittest.TestCase):
         # 同时含"代码"与"报错"，按表顺序 code 在 debug 前
         self.assertEqual(self.clf.classify("这段代码报错了怎么修"), "code")
 
+    # ---- 英文任务分类（国际化）----
+    def test_en_code(self):
+        self.assertEqual(self.clf.classify("write a python script to parse json"), "code")
+
+    def test_en_debug(self):
+        self.assertEqual(self.clf.classify("fix the bug in this code"), "debug")
+
+    def test_en_math(self):
+        self.assertEqual(self.clf.classify("prove pythagorean theorem"), "math")
+
+    def test_en_translate(self):
+        self.assertEqual(self.clf.classify("translate this to chinese"), "translate")
+
+    def test_en_writing(self):
+        self.assertEqual(self.clf.classify("write a product ad headline"), "writing")
+
+    def test_en_qa(self):
+        self.assertEqual(self.clf.classify("what is machine learning"), "qa")
+
+    def test_en_extract(self):
+        self.assertEqual(self.clf.classify("extract keywords from this text"), "extract")
+
+    def test_en_classify(self):
+        self.assertEqual(self.clf.classify("classify these items into categories"), "classify")
+
+    def test_en_refactor(self):
+        self.assertEqual(self.clf.classify("refactor this function"), "refactor")
+
+    def test_en_plan(self):
+        self.assertEqual(self.clf.classify("plan a project roadmap"), "plan")
+
+    def test_en_complex(self):
+        self.assertEqual(self.clf.classify("analyze the tradeoffs of this design"), "complex")
+
+    def test_en_longtext(self):
+        self.assertEqual(self.clf.classify("summarize this long report"), "longtext")
+
+    def test_en_vision(self):
+        self.assertEqual(self.clf.classify("look at this screenshot"), "vision")
+
+    def test_en_creative(self):
+        self.assertEqual(self.clf.classify("brainstorm some creative names"), "creative")
+
     def test_empty_task_raises_valueerror(self):
         # #9: 空任务应抛出 ValueError
         with self.assertRaises(ValueError):

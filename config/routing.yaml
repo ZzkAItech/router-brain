@@ -7,23 +7,22 @@
 # 分类关键词表（中文 + 英文）：大脑判断子任务性质时参考。
 # 不再直接映射到模型——模型由大脑自选 + 失败时大脑决定替换模型。
 classifier:
-  code:     [写代码, 实现, 编写, 创建, 生成代码, 写个, 写一个, 函数, 模块, 接口, 脚本, 程序, 编译, bug, 报错, 调试, 重构, 修复, 优化代码, 代码, 编程, python, javascript, typescript, golang, rust, sql, 算法实现]
-  debug:    [报错, 异常, 崩溃, bug, debug, 排查, 定位问题, 修复, 为什么失败, 日志分析]
-  refactor: [重构, 重写, 拆解, 提取函数, 简化, 清理代码, 技术债]
-  math:     [数学, 证明, 方程, 导数, 积分, 概率, 统计, 线性代数, 计算, 推导]
-  plan:     [规划, 方案, 架构设计, 步骤, 计划, roadmap, 里程碑, 拆解任务, 决策]
-  complex:  [复杂, 深入, 权衡, 分析, 推理, 论证, 为什么, 如何设计, 研究, 对比方案]
-  longtext: [长文, 总结, 报告, 文档, 综述, 分析报告, 万字, 长文本]
-  translate: [翻译, translate, 英译中, 中译英, 润色中文]
-  zh:       [中文, 汉语, 措辞, 语气, 中文表达]
-  writing:  [文案, 文章, 写作, 标题, 广告语, 宣传, 软文, 故事, 剧本, 演讲稿]
-  creative: [创意, 头脑风暴, 点子, 灵感, 命名, 方案创意]
-  vision:   [看图, 图片, 截图, 图像, 识别图中, ocr, 照片, 视觉, 多模态]
-  qa:       [是什么, 什么是, 什么意思, 区别, 对比, 快问, 一句话, 简述, 定义, 常见问题]
-  classify: [分类, 归类, 标签, 打标, 判断属于, 类型判断]
-  extract:  [提取, 摘要, 关键词, 结构化, json输出, 解析出, 从文本中]
+  code:     [写代码, 实现, 编写, 创建, 生成代码, 写个, 写一个, 函数, 模块, 接口, 脚本, 程序, 编译, 报错, 调试, 重构, 修复, 优化代码, 代码, 编程, python, javascript, typescript, golang, rust, sql, 算法实现, write a script, write a program, write a function, implement a, create a function, a python script, a javascript function, build a, a program that, programming]
+  debug:    [报错, 异常, 崩溃, bug, debug, 排查, 定位问题, 修复, 为什么失败, 日志分析, error, exception, crash, troubleshoot, stack trace, failing, why does, fix the bug, fix this bug, debug this, bug in]
+  refactor: [重构, 重写, 拆解, 提取函数, 简化, 清理代码, 技术债, refactor, rewrite, restructure, extract function, simplify this, clean up, tech debt]
+  math:     [数学, 证明, 方程, 导数, 积分, 概率, 统计, 线性代数, 计算, 推导, math, proof, equation, derivative, integral, probability, statistics, linear algebra, calculate, derive, pythagorean, geometry, algebra, calculus]
+  plan:     [规划, 方案, 架构设计, 步骤, 计划, roadmap, 里程碑, 拆解任务, 决策, plan, roadmap, milestone, architecture, strategy, breakdown, decision, project plan]
+  complex:  [复杂, 深入, 权衡, 分析, 推理, 论证, 为什么, 如何设计, 研究, 对比方案, complex, deep, tradeoff, analysis, reasoning, argue, why, how to design, research, compare]
+  longtext: [长文, 总结, 报告, 文档, 综述, 分析报告, 万字, 长文本, long, summary, report, document, review, survey, essay]
+  translate: [翻译, translate, translation, 英译中, 中译英, 润色中文, english to chinese, chinese to english]
+  zh:       [中文, 汉语, 措辞, 语气, 中文表达, chinese, mandarin, phrasing, tone]
+  writing:  [文案, 文章, 写作, 标题, 广告语, 宣传, 软文, 故事, 剧本, 演讲稿, copy, article, writing, title, headline, ad copy, promotion, story, speech]
+  creative: [创意, 头脑风暴, 点子, 灵感, 命名, 方案创意, creative, brainstorm, idea, inspiration, naming, campaign]
+  vision:   [看图, 图片, 截图, 图像, 识别图中, ocr, 照片, 视觉, 多模态, look at, image, screenshot, picture, photo, visual, multimodal]
+  qa:       [是什么, 什么是, 什么意思, 区别, 对比, 快问, 一句话, 简述, 定义, 常见问题, what is, what are, meaning, difference, compare, quick, brief, definition, faq, short answer]
+  classify: [分类, 归类, 标签, 打标, 判断属于, 类型判断, classify, categorize, label, tag, determine type]
+  extract:  [提取, 摘要, 关键词, 结构化, json输出, 解析出, 从文本中, extract, summarize, keyword, structured, json output, parse, from text]
 
-# 快问快答类任务走 direct 模式（直接 API，不启动 headless agent，省时省钱）
 direct_execution: [qa, classify, extract]
 
 # 执行参数

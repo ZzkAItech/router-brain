@@ -90,7 +90,7 @@ python3 -m venv .venv && . .venv/bin/activate
 pip install -e .
 ```
 
-The only dependency is PyYAML. You'll also need **DeepSeek Harness** installed (`dsh` on your PATH).
+The only dependency is PyYAML. You'll also need **DeepSeek Harness** installed (`dsh` on your PATH) and `~/.dsh/settings.yaml` configured (with your API providers). Without these, the agent-dispatch feature won't run—though `route` and `list-models` still work for testing.
 
 ### 2. Configure your model pool
 
